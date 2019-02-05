@@ -29,6 +29,22 @@ namespace Assignment2_Group9
 
         }//End of Main
 
+        //Custom method for bubble sort the array
+        // A function to implement bubble sort 
+        private static void bubbleSort(int[] arr)
+        {
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j] > arr[j + 1])
+                    {
+                        // swap temp and arr[i] 
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+        }
+
         //Custom method to find the median of the array
         static int findMedian(int[] arr2)
         {
@@ -39,8 +55,10 @@ namespace Assignment2_Group9
                 var median = 0.0;
                 var items = new[] { 0, 1, 2, 4, 6, 5, 3 };
                 var getLengthItems = items.Length;
-                Array.Sort(items);//Sorting the array
-                                  //Using IF statement to determine the length and the median of the array
+
+                bubbleSort(items);//Sorting the array using the custom method
+                
+                //Using IF statement to determine the length and the median of the array
                 if (getLengthItems % 2 == 0)
 
                 {
@@ -63,7 +81,7 @@ namespace Assignment2_Group9
             }//End of catch block
 
             return 0;//Its a return method!!
-        }
+        }//End of findMedian method
 
         //Custom method to calculate the pair with smallest absolute difference in the array
         static int [] closestNumbers(int[] arr, int n)
@@ -73,8 +91,8 @@ namespace Assignment2_Group9
             {
                 if (n <= 1)
 
-                    // Sort array elements 
-                    Array.Sort(arr);
+                    // Sort array elements using the custom method
+                    bubbleSort(arr);
 
                 // Compare differences of adjacent 
                 // pairs to find the minimum difference. 
