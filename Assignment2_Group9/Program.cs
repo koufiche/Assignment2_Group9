@@ -10,18 +10,20 @@ namespace Assignment2_Group9
     {
         static void Main(string[] args)
         {
-
+            //Displays the result of the custom method using the given inpu of arrays
             Console.WriteLine("\n\nClosest numbers:");
             int[] arr = { 5, 4, 3, 2 };
             int n = arr.Length;
             closestNumbers(arr, n);
             Console.ReadKey();
 
+            //Displays the result of the custom method using the given inpu of arrays
             Console.WriteLine("\n\nFind the median");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             findMedian(arr2);
             Console.ReadKey();
 
+            //Displays the result of the custom method using the given inpu of arrays
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
@@ -34,7 +36,9 @@ namespace Assignment2_Group9
         private static void bubbleSort(int[] arr)
         {
             int n = arr.Length;
+            //For loop to iterate the sort function
             for (int i = 0; i < n - 1; i++)
+                //Nested for loop to perform the bubble sort function
                 for (int j = 0; j < n - i - 1; j++)
                     if (arr[j] > arr[j + 1])
                     {
@@ -42,8 +46,8 @@ namespace Assignment2_Group9
                         int temp = arr[j];
                         arr[j] = arr[j + 1];
                         arr[j + 1] = temp;
-                    }
-        }
+                    }//End of for loop
+        }//End of bubble sort function
 
         //Custom method to find the median of the array
         static int findMedian(int[] arr2)
