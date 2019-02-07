@@ -10,30 +10,44 @@ namespace Assignment2_Group9
     {
         static void Main(string[] args)
         {
-            //Displays the result of the custom method using the given inpu of arrays
-            Console.WriteLine("\n\nClosest numbers:");
-            int[] arr = { 5, 4, 3, 2 };
-            int n = arr.Length;
-            closestNumbers(arr, n);
-            Console.ReadKey();
+            //Displays the result of the custom method using the given input of arrays
+            Console.WriteLine("Function: Find the closest numbers in the array { 5, 4, 3, 2 }");
+            int[] arr3 = new int[] { 5, 4, 3, 2 };
+            int[] answer1 = closestNumbers(arr3,1);
+            for (int z2 = 0; z2 < answer1.Length; z2++)
+            {
+                Console.Write(answer1[z2]);
+                if (z2 < answer1.Length - 1)
+                {
+                    Console.Write(" ,");
+                }
+            }
 
-            //Displays the result of the custom method using the given inpu of arrays
-            Console.WriteLine("\n\nFind the median");
+            Console.WriteLine("\n----------------------------------------------------------------------------------");
+            Console.ReadKey(true);
+
+
+            //Displays the result of the custom method using the given input of arrays
+            Console.WriteLine("Function: Find the median of the array { 0, 1, 2, 4, 6, 5, 3 }");
             int[] arr2 = { 0, 1, 2, 4, 6, 5, 3 };
             findMedian(arr2);
+
+            Console.WriteLine("----------------------------------------------------------------------------------");
             Console.ReadKey();
 
-            //Displays the result of the custom method using the given inpu of arrays
-            Console.WriteLine("\n\nDay of Programmer");
-            int year = 2017;
+            //Displays the result of the custom method using the given input of arrays
+            Console.WriteLine("Function: Day of Programmer for the year 1986");
+            int year = 1986;
             Console.WriteLine(dayOfProgrammer(year));
+
+            Console.WriteLine("----------------------------------------------------------------------------------");
             Console.ReadKey();
 
         }//End of Main
 
         //Custom method for bubble sort the array
         // A function to implement bubble sort 
-        private static void bubbleSort(int[] arr)
+        private static void Sort(int[] arr)
         {
             int n = arr.Length;
             //For loop to iterate the sort function
@@ -60,7 +74,7 @@ namespace Assignment2_Group9
                 var items = new[] { 0, 1, 2, 4, 6, 5, 3 };
                 var getLengthItems = items.Length;
 
-                bubbleSort(items);//Sorting the array using the custom method
+                Sort(items);//Sorting the array using the custom method
                 
                 //Using IF statement to determine the length and the median of the array
                 if (getLengthItems % 2 == 0)
@@ -80,7 +94,7 @@ namespace Assignment2_Group9
             //Using catch block to display the error message in case of an exception
             catch
             {
-                Console.WriteLine("Exception occured while trying to find the closest number in the array");
+                Console.WriteLine("Exception occured while trying to find the median in the array");
                 Console.ReadKey();
             }//End of catch block
 
@@ -88,47 +102,67 @@ namespace Assignment2_Group9
         }//End of findMedian method
 
         //Custom method to calculate the pair with smallest absolute difference in the array
-        static int [] closestNumbers(int[] arr, int n)
+        static int[] closestNumbers(int[] Arr, int n)
         {
             //Using try block to make sure nothing goes wrong!
             try
             {
-                if (n <= 1)
+                int j = 0;
+            int[] store = new int[Arr.Length + 10];
 
-                    // Sort array elements using the custom method
-                    bubbleSort(arr);
+            Sort(Arr);//Soring the array by calling the method
+            double oldmin = 1 / .00009;
 
-                // Compare differences of adjacent 
-                // pairs to find the minimum difference. 
-                int minDiff = arr[1] - arr[0];
-              
-                for (int i = 2; i < n; i++)
-                    minDiff = Math.Min(minDiff, arr[i] - arr[i - 1]);
+            //For loop to find the difference in the integers in the array
+            for (int i = 0; i < Arr.Length - 1; i++)
+            {
+                double newmin = Arr[i + 1] - Arr[i];
 
-                // Traverse array again and print all pairs 
-                // with difference as minDiff. 
-                for (int i = 1; i < n; i++)
+                if (newmin < 0)
                 {
-                    if ((arr[i] - arr[i - 1]) == minDiff)
-                    {
-                        Console.Write("[" + arr[i - 1] + ", "
-                              + arr[i] + "]");
+                    newmin = newmin * -1;
+                }
 
-                    }//End of If statement
-                }//End of for loop
+                if (oldmin > newmin)
+                {
+                    oldmin = newmin;
+                    store[j] = Arr[i];
+                    j++;
+                    store[j] = Arr[i + 1];
+                    j++;
+
+                }// end of IF
+
+                else if (oldmin == newmin)
+                {
+                    store[j] = Arr[i];
+                    j++;
+                    store[j] = Arr[i + 1];
+                    j++;
+                }//  end of else if
+                
+            }// end of FOR - 1
+
+            int[] final = new int[j];
+
+            for (int i = 0; i < j; i++)
+            {
+                final[i] = store[i];
+            }
+            return final;//Its a return method!!
             }//End of try block
             //Using catch block to display the error message in case of an exception
             catch
             {
-                Console.WriteLine("Exception occured while trying to find the closest number in the array");
+                Console.WriteLine("Exception occured while trying to find the closest numbers of the array");
                 Console.ReadKey();
             }//End of catch block
 
-            return new int[] { };//Its a return method!!
-        }//End of the closestNumbers method
+            return new int[] { };//Its a return method!!;
 
-        //Custom method to calculate the day of teh programmer
-        private static String dayOfProgrammer(int year)
+        }//End of closestNumber method
+            //Custom method to calculate the day of teh programmer
+            private static String dayOfProgrammer(int year)
         {
             //Using try block to make sure nothing goes wrong!
             try
@@ -172,7 +206,7 @@ namespace Assignment2_Group9
             //Using catch block to display the error message in case of an exception
             catch
             {
-                Console.WriteLine("Exception occured while trying to find the day of teh programmer");
+                Console.WriteLine("Exception occured while trying to find the day of the programmer");
                 Console.ReadKey();
             }//End of catch block
             return "";
